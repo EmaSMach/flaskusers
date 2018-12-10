@@ -123,12 +123,4 @@ class User(BaseUser):
         Adds the current user to the dict of users.
         """
         self.users[self.user_id] = self.to_dict()
-    
-        
-if __name__ == '__main__':
-    u = User(1, 'emanuel', 'sandoval', 'david@gmail.com', True, 'emanuel_u')
-    print("Valido:", u.validate())
-    d = u.to_dict()
-    u2 = u.from_dict(d)
-    print(u2 == u)
-    print("Validod:", validate_length('sdf'))
+
