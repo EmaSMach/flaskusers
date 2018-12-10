@@ -1,6 +1,7 @@
 # --*-- encoding: utf-8 --*--
 from __future__ import unicode_literals, print_function
 from utils.validators import validate_email, validate_length
+import json
 
 
 class BaseUser(object):
@@ -124,3 +125,48 @@ class User(BaseUser):
         """
         self.users[self.user_id] = self.to_dict()
 
+
+class Address(object):
+    """
+    A class for address.
+    """
+    addresses = {'addresses': []}
+    
+    def __init__(self, address=None):
+        self.address = address
+        
+    def to_addresses(self):
+        self.addresses['addresses'].append(self.address)
+        
+    @classmethod
+    def from_json(cls, jsstring):
+        """
+        Creates an Address object with the first address in the json file.
+        
+        json format: {'addresses' : ['address1', 'address2', ....]}
+        """
+        pyobject = json.loads(jsstring)
+        address = pyobject['addresses'][0]
+        return cls(address)
+    
+    @staticmethod
+    def to_json():
+        """
+        Put all the addresses into a json string.
+        :return str with json format.
+        """
+        return json.dumps(Address.addresses, indent=2)
+        
+    @staticmethod
+    def from_json_to_addresses(jsstring):
+        """
+        Creates an Address object with the first address in the json file.
+
+        json format: {'addresses' : ['address1', 'address2', ....]}
+                """
+        pyobject = json.loads(jsstring)
+        addresses = pyobject['addresses']
+        Address.addresses['addresses'].extend(addresses)
+    
+    def __unicode__(self):
+        return self.address

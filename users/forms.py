@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, Length, Email, NumberRange, Optional
+from wtforms.validators import DataRequired, Length, Email, NumberRange, Optional, InputRequired
 from wtforms.widgets import TextArea
 
 from utils.validators import IsInteger, PositiveInteger
@@ -34,5 +34,14 @@ class UserCreationForm(FlaskForm):
     city = StringField('City', validators=[Optional()])
     address = StringField('Address', widget=TextArea())
     zip_code = IntegerField('Zip Code', validators=[Optional(), PositiveInteger()])
+
+    submit = SubmitField("Submit")
+
+
+class AddressForm(FlaskForm):
+    """
+    Simple form for the address.
+    """
+    address = StringField('Address', validators=[InputRequired(), Length(min=5)])
 
     submit = SubmitField("Submit")

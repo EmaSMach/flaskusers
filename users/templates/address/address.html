@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Addresses{% endblock title %}
+
+{% block content %}
+
+{% if form %}
+    <div class="col-sm-5 m-auto justify-center">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <p>{{ message }}</p>
+                {% endif %}
+                {% endwith %}
+                <legend class="border-bottom mb-4">Add a new address</legend>
+                <div class="form-group">
+                    {{ form.address.label(class="form-control-label") }}
+                    {{ form.address(class="form-control form-control-sm") }}
+                    {% if form.address.errors %}
+                    <ul>
+                        {% for error in form.address.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+{% else %}
+
+<h1 class="mt-3">Address</h1>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for addresses in addresses_lists %}
+            {% for address in addresses %}
+                <tr>
+                  <th scope="row">{{ address }}</th>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+
+    </tbody>
+    <form action="" method="POST"><div class="container">
+        <button onclick="window.location.href='{{ url_for('address.address') }}'">Add address</button>
+    </div>
+    </form>
+
+</table>
+
+{% endif %}
+{% endblock content %}
+

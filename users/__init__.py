@@ -5,6 +5,7 @@ from flask import Flask, redirect, url_for
 
 import users
 import home
+import address
 
 
 def create_app(test_config=None):
@@ -33,6 +34,7 @@ def create_app(test_config=None):
     # Start registering our blueprints
     app.register_blueprint(users.bp)
     app.register_blueprint(home.bp)
+    app.register_blueprint(address.bp)
     
     # Let's redirect all 404 to the home page
     @app.errorhandler(404)
