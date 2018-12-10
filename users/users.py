@@ -34,9 +34,7 @@ def new():
         # 6: User(6, 'lauraro', 'martínez', 'lauta@gmail.com', True, 'lautaro').to_dict(),
         # 7: User(7, 'pedro', 'monetengro', 'pedrom@gmail.com', True, 'pedro').to_dict(),
     }
-    print("Antes")
     form = UserCreationForm(request.form)
-    print("Pasó")
     if request.method == 'POST':
         if form.validate_on_submit():
             print(form.user_id.data)
