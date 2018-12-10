@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, NumberRange, Optional
-from wtforms.widgets import TextInput, CheckboxInput
+from wtforms.widgets import TextArea
 
 from utils.validators import IsInteger, PositiveInteger
 
@@ -32,7 +32,7 @@ class UserCreationForm(FlaskForm):
     country = StringField('Country', validators=[Optional()])
     state = StringField('State', validators=[Optional()])
     city = StringField('City', validators=[Optional()])
-    address = StringField('Address', widget=TextInput())
+    address = StringField('Address', widget=TextArea())
     zip_code = IntegerField('Zip Code', validators=[Optional(), PositiveInteger()])
 
     submit = SubmitField("Submit")

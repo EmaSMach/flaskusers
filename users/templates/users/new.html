@@ -9,6 +9,11 @@
     <form action="" method="POST">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p>{{ message }}</p>
+            {% endif %}
+            {% endwith %}
             <legend class="border-bottom mb-4">Submit a new user</legend>
             <div class="form-group">
                 {{ form.user_id.label(class="form-control-label") }}
@@ -55,22 +60,22 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.active.label(class="form-control-label") }}
-                {{ form.active }}
-                {% if form.active.errors %}
+                {{ form.username.label(class="form-control-label") }}
+                {{ form.username(class="form-control form-control-sm") }}
+                {% if form.username.errors %}
                 <ul>
-                    {% for error in form.active.errors %}
+                    {% for error in form.username.errors %}
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.username.label(class="form-control-label") }}
-                {{ form.username(class="form-control form-control-sm") }}
-                {% if form.username.errors %}
+                {{ form.active.label(class="form-control-label") }}
+                {{ form.active }}
+                {% if form.active.errors %}
                 <ul>
-                    {% for error in form.username.errors %}
+                    {% for error in form.active.errors %}
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
