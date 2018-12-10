@@ -55,9 +55,9 @@
         {% endfor %}
 
     </tbody>
-    <form action="" method="POST"><div class="container">
-        <button onclick="window.location.href='{{ url_for('address.address') }}'">Add address</button>
-    </div>
+
+    <form class="form-group" method="POST">
+        <input class="btn btn-outline-info" id="submit" name="submit" type="submit" value="Add address">
     </form>
 
 </table>
