@@ -9,9 +9,6 @@ bp = Blueprint('address', __name__, url_prefix='/address')
 
 users = {}
 
-a1 = Address("Address1").to_addresses()
-a2 = Address("Address2").to_addresses()
-
 
 @bp.route('/', methods=['GET', 'POST'])
 def address():

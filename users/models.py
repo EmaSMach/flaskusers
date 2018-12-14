@@ -163,7 +163,7 @@ class Address(object):
         Creates an Address object with the first address in the json file.
 
         json format: {'addresses' : ['address1', 'address2', ....]}
-                """
+        """
         pyobject = json.loads(jsstring)
         addresses = pyobject['addresses']
         Address.addresses['addresses'].extend(addresses)

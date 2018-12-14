@@ -38,7 +38,7 @@ def create_app(test_config=None):
     
     # Let's redirect all 404 to the home page
     @app.errorhandler(404)
-    def page_not_found_redirect(e):
+    def page_not_found_redirect(error):
         return redirect(url_for('home.home_page'))
 
     return app
